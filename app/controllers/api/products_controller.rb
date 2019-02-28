@@ -13,8 +13,9 @@ class Api::ProductsController < ApplicationController
 
   def product2
     @product2 = Product.second
+    @parameter = params['seg_key']
 
-    render 'product2.json.jbuilder'
+    render 'product2.json.jbuilder' 
   end
 
   def product3
