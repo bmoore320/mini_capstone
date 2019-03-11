@@ -10,6 +10,10 @@
     if params[:discount] == "true"
       @products = @products.where("price > ?", 99)
     end
+
+    if params[:sort] && params[:sort_order]
+      @products = @products.order(params[:sort] => params[:sort_order])
+    end
      render 'index.json.jbuilder' 
   end 
 
