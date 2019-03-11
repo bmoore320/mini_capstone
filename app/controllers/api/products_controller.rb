@@ -1,26 +1,53 @@
-class Api::ProductsController < ApplicationController
-  def all_products
-    @products = Product.all
+        class Api::ProductsController < ApplicationController
+  def index
+    search_term = params[:search]
 
-    render 'my_product.json.jbuilder'
+    @products = Product.where("name LIKE ?", "%#{params[:search]}%")
+    # @index = params["apple"]
+    render 'index.json.jbuilder'
   end 
 
-  def product1
-    @product1 = Product.first
-
-    render 'a_product.json.jbuilder'
+  def show
+    the_id = params[:id]
+    @product = Product.find_by(id: the_id)
+    render 'show.json.jbuilder' 
   end
 
-  def product2
-    @product2 = Product.second
-    @parameter = params['seg_key']
-
-    render 'product2.json.jbuilder' 
+  def create
+    @product = Product.new(
+      name: params[:name],
+      price: params[:price],
+      image_url: params[:image_url],
+      description: params[:description]
+    )
+  if @product.save
+    render 'show.json.jbuilder'
+  else
+    render 'errors.json.jbuilder'
+  end
+  end  
+  
+    
+  def update
+    the_id = params[:id]
+    @product = Product.find_by(id: the_id)
+    @product.name = params[:name]
+    @product.price = params[:price]
+    @product.image_url = params[:image_url]
+    @product.description = params[:description]
+    if @product.save
+      render 'show.json.jbuilder'
+    else
+      render 'errors.json.jbuilder'
+    end
   end
 
-  def product3
-    @product3 = Product.third
-
-    render 'product3.json.jbuilder'
+  def destroy
+  the_id = params[:id]
+  @product = Product.find_by(id: the_id)
+  @product.destroy
+  render 'destroy.json.jbuilder'
   end
+
 end 
+        

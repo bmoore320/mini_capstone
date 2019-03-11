@@ -1,0 +1,1 @@
+json.message 'this product has been removed from the database'
