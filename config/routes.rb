@@ -14,7 +14,12 @@ Rails.application.routes.draw do
     post 'products' => 'products#create' #create a new photo
     patch 'products/:id' => 'products#update' #updates a specific photo
     delete 'products/:id' => 'products#destroy'   
+    get '/suppliers' => 'suppliers#index'
 
+    post '/users' => 'users#create'
+
+    post '/sessions' => 'sessions#create'
+    
     # get '/product2' => 'products#product2'  
     # get '/product3' => 'products#product3'
     # get '/query_single_product' => 'products#product1'
