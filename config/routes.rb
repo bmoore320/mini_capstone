@@ -20,6 +20,9 @@ Rails.application.routes.draw do
 
     post '/sessions' => 'sessions#create'
     
+    get '/orders' => 'orders#index'
+    post '/orders' => 'orders#create'
+      
     # get '/product2' => 'products#product2'  
     # get '/product3' => 'products#product3'
     # get '/query_single_product' => 'products#product1'

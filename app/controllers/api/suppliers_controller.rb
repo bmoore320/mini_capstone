@@ -6,8 +6,8 @@ class Api::SuppliersController < ApplicationController
     render 'index.json.jbuilder'    
   end
  
-  def show
-    @supplier = Supplier.find_by(id: params[:id])
+  # def show
+  #   @supplier = Supplier.find_by(id: params[:id])
 
   # def show
   #   the_id = params[:id]
